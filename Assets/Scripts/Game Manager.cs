@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -12,25 +10,29 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public List<GameObject> targets;
     public List<GameObject> targetsPremium;
+    
     private int score;
     public TextMeshProUGUI scoreText;
+    public GameObject scoreTextObj;
+    
+    private uint currentLives;
+    public TextMeshProUGUI livesText;
+
     public TextMeshProUGUI gameOverText;
+    
     private float spawnRate = 1.0f;
+    public GameObject startSpawn;
     public bool isGameActive;
     public Button restartButton;
-    public GameObject titleScreen;
-    public GameObject scoreTextObj;
     public Button exitButton;
+    public GameObject titleScreen;
+
     private int difficultyScoreBonus;
     private int mediumScoreBonus = 2;
     private int hardScoreBonus = 4;
     public string difficultyName;
+    
     public Slider volumeSlider;
-
-    public AudioSource buttonSound;
-
-    public TextMeshProUGUI livesText;
-    private uint currentLives;
 
     private int foodCount;
     public TextMeshProUGUI foodCountText;
@@ -38,14 +40,11 @@ public class GameManager : MonoBehaviour
     
     public GameObject pauseScreen;
     private bool pauseEnabled;
-
-    public GameObject startSpawn;
+    
     void Start()
     {
         exitButton.onClick.AddListener(ExitGame);
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -120,6 +119,7 @@ public class GameManager : MonoBehaviour
         foodCount = 0;
         foodCountText.text = $"Food: {foodCount}";
     }
+    
     public void GameOver()
     {
         isGameActive = false;
@@ -142,7 +142,6 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("Exit");
         Application.Quit();
     }
 

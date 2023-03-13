@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Target : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Rigidbody targetRB;
     private float minForce = 12.0f;
     private float maxForce = 16.0f;
