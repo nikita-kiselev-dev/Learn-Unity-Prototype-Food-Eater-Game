@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3302247971580497485}
   - component: {fileID: 7273886181227406578}
   - component: {fileID: 6297181690013475516}
-  - component: {fileID: 270827299287152221}
   - component: {fileID: 4469478883166339082}
+  - component: {fileID: 8632214588844147812}
   m_Layer: 0
   m_Name: Bad_1
   m_TagString: Bad
@@ -36,7 +36,7 @@ Transform:
   m_Children:
   - {fileID: 3667232453324066801}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3258253043191121023
 MeshFilter:
@@ -135,21 +135,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &270827299287152221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6130915730553474836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aec64eccf03bb43bd30990b687fb44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointValue: -15
-  explosionParticle1: {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb, type: 3}
-  explosionParticle2: {fileID: 2478549635105912040, guid: ec46c8c4a3cbc429382ee48bd9169b45, type: 3}
 --- !u!135 &4469478883166339082
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -171,6 +156,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.30479312
   m_Center: {x: -0.000000014901161, y: 0.08079566, z: 0.000000052154064}
+--- !u!114 &8632214588844147812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130915730553474836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0e7e664818f9e4cb8aa83a2aa5b25d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  PointValue: 0
+  destroyParticlesHolder: {fileID: 0}
+  destroyParticle1: {fileID: 0}
+  destroyParticle2: {fileID: 0}
+  destroySound: {fileID: 0}
 --- !u!1001 &1013939020927917571
 PrefabInstance:
   m_ObjectHideFlags: 0

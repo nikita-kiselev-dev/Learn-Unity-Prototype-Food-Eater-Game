@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PremiumFoodTarget : FoodTarget
 {
-    protected int PointValue = 8;
-    
+
     private void Start()
     {
-        destroySound = AudioPlayer.Instance.transform.Find("Eat Premium Sound").GetComponent<AudioSource>();
+        PointValue = 8;
+        destroySound = audioManager.transform.Find("Eat Premium Sound").GetComponent<AudioSource>();
     }
     public override void OnMouseDown()
     {

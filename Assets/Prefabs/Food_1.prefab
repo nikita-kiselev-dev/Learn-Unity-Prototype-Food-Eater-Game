@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4658286889829497967}
   - component: {fileID: 8157668033274352303}
   - component: {fileID: 6110570454084797663}
-  - component: {fileID: 4530939101315134719}
+  - component: {fileID: 5311466079217549377}
   m_Layer: 0
   m_Name: Food_1
   m_TagString: Good
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1253251739346372018
 MeshFilter:
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4530939101315134719
+--- !u!114 &5311466079217549377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1656989069657305868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aec64eccf03bb43bd30990b687fb44, type: 3}
+  m_Script: {fileID: 11500000, guid: 48788bdf05ee1764d8de6bfe7afbc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 5
-  explosionParticle1: {fileID: 5112437202714306363, guid: 7b4191607aae74c0ab244a8d6e48adbf, type: 3}
-  explosionParticle2: {fileID: 15085447402717889, guid: 743ce290c74ae49c19aa3f128322fc7e, type: 3}
+  gameManager: {fileID: 0}
+  PointValue: 0
+  destroyParticlesHolder: {fileID: 0}
+  destroyParticle1: {fileID: 0}
+  destroyParticle2: {fileID: 0}
+  destroySound: {fileID: 0}

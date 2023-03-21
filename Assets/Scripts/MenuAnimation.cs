@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MenuAnimation : MonoBehaviour
 {
     [SerializeField] private GameObject title;
+    [SerializeField] private GameObject restartTextObject;
 
     [SerializeField] private GameObject difficultyButtonsGroup;
     
@@ -31,31 +32,33 @@ public class MenuAnimation : MonoBehaviour
     {
         RotateTitle();
         ChangeDifficultyButton();
-        Debug.Log("deltaTime " + Time.deltaTime);
     }
     
-
+    
+    //Rotate Game Title between two z values
     private void RotateTitle()
     {
         if (zReached == false && title.transform.rotation.z < _zRotationBound)
         {
             title.transform.Rotate(_zRotation * _speed);
+            restartTextObject.transform.Rotate(_zRotation * _speed);
             if (title.transform.rotation.z > _zRotationBound)
             {
-                Debug.Log("Time Title " + Time.time);
                 zReached = true;
             }
         }
         else
         {
             title.transform.Rotate(-_zRotation * _speed);
+            restartTextObject.transform.Rotate(-_zRotation * _speed);
             if (title.transform.rotation.z < -(_zRotationBound))
             {
                 zReached = false;
             }
         }
     }
-
+    
+    // Increase/decrease size of buttons between two x values
     private void ChangeDifficultyButton()
     {
         if (xCellSizeReached == false && buttonGridGroup.cellSize.x < xMaxCellSize)
@@ -63,7 +66,6 @@ public class MenuAnimation : MonoBehaviour
             buttonGridGroup.cellSize += increaseSize;
             if (buttonGridGroup.cellSize.x > xMaxCellSize)
             {
-                Debug.Log("Time Buttons " + Time.time);
                 xCellSizeReached = true;
             }
         }

@@ -1,61 +1,60 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class Target : MonoBehaviour
 {
-    private Rigidbody targetRB;
+    protected Rigidbody targetRB;
     private float minForce = 12.0f;
     private float maxForce = 16.0f;
     private float maxTorque = 10.0f;
     private float xStartPosition = 4.0f;
     private float yStartPosition = 2.0f;
 
-    private GameManager gameManager;
+    [SerializeField] protected GameManager gameManager;
+    
+    [SerializeField] protected int PointValue;
 
-    protected int PointValue;
+    [SerializeField] protected ParticleHolder destroyParticlesHolder;
+    [SerializeField] protected ParticleSystem destroyParticle1;
+    [SerializeField] protected ParticleSystem destroyParticle2;
 
-    public ParticleSystem explosionParticle1;
-    public ParticleSystem explosionParticle2;
+    protected GameObject audioManager;
 
-    private AudioSource eatSound;
-    private AudioSource eatPremiumSound;
-    private AudioSource boomSound;
-
-    protected AudioSource destroySound;
-
-    void Start()
+    [SerializeField] protected AudioSource destroySound;
+    
+    protected void Start()
     {
         targetRB = gameObject.GetComponent<Rigidbody>();
         targetRB.AddForce(RandomForce(), ForceMode.Impulse);
         targetRB.AddTorque(RandomTorque(), RandomTorque(),
             RandomTorque(), ForceMode.Impulse);
         gameObject.transform.position = RandomStartPosition();
+        destroyParticlesHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        eatSound = GameObject.Find("Eat Sound").GetComponent<AudioSource>();
-        eatPremiumSound = GameObject.Find("Eat Premium Sound").GetComponent<AudioSource>();
-        boomSound = GameObject.Find("Boom Sound").GetComponent<AudioSource>();
     }
 
     public virtual void OnMouseDown()
     {
+        Debug.Log(gameManager.isGameActive);
         if (gameManager.isGameActive)
         {
             Destroy(gameObject);
-            InstantiateExplosion(explosionParticle1);
-            InstantiateExplosion(explosionParticle2);
+            InstantiateExplosion(destroyParticle1);
+            InstantiateExplosion(destroyParticle2);
             gameManager.UpdateScore(PointValue);
             switch (gameObject.tag)
             {
                 case ("Good"):
-                    eatSound.Play();
+                    destroySound.Play();
                     break;
                 case ("Premium"):
-                    eatPremiumSound.Play();
+                    destroySound.Play();
                     break;
                 case ("Bad"):
-                    boomSound.Play();
+                    destroySound.Play();
                     break;
             }
         }

@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class FoodTarget : Target
 {
-    private ParticleSystem particleEffect1;
-
-    private int PointValue = 5;
 
     private void Start()
     {
-        destroySound = AudioPlayer.Instance.transform.Find("Eat Sound").GetComponent<AudioSource>();
-        //particleEffect1 = base.particleEffectSystem["Purple"];
+        Debug.Log("FoodTarget started");
+        base.Start();
+        PointValue = 5;
+        targetRB = gameObject.GetComponent<Rigidbody>();
+        destroySound = GameObject.Find("Eat Sound").GetComponent<AudioSource>();
+        destroyParticle1 = destroyParticlesHolder.destroyParticlesHolder["blue"];
+        destroyParticle2 = destroyParticlesHolder.destroyParticlesHolder["pink"];
     }
 
     public override void OnMouseDown()
     {
         base.OnMouseDown();
-        destroySound.Play();
     }
 }

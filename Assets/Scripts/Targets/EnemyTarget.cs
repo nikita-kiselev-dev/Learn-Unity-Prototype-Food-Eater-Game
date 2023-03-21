@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyTarget : Target
 {
-    protected int PointValue = -10;
     private void Start()
     {
-        destroySound = AudioPlayer.Instance.transform.Find("Boom Sound").GetComponent<AudioSource>();
+       PointValue = -10;
+       destroySound = audioManager.transform.Find("Boom Sound").GetComponent<AudioSource>();
     }
     public override void OnMouseDown()
     {
