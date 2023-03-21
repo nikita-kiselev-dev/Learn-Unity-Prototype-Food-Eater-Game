@@ -20,9 +20,7 @@ public class Target : MonoBehaviour
     [SerializeField] protected ParticleHolder destroyParticlesHolder;
     [SerializeField] protected ParticleSystem destroyParticle1;
     [SerializeField] protected ParticleSystem destroyParticle2;
-
-    protected GameObject audioManager;
-
+    
     [SerializeField] protected AudioSource destroySound;
     
     protected void Start()

@@ -6,12 +6,11 @@ public class EnemyTarget : Target
 {
     private void Start()
     {
-       PointValue = -10;
-       destroySound = audioManager.transform.Find("Boom Sound").GetComponent<AudioSource>();
+        base.Start(); 
+        PointValue = -10; 
+        destroySound = GameObject.Find("Boom Sound").GetComponent<AudioSource>();
+        destroyParticle1 = destroyParticlesHolder.destroyParticlesHolder["red"];
+        destroyParticle2 = destroyParticlesHolder.destroyParticlesHolder["orange"];
     }
-    public override void OnMouseDown()
-    {
-        base.OnMouseDown();
-        destroySound.Play();
-    }
+    
 }
