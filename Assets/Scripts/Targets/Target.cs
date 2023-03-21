@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +14,7 @@ public class Target : MonoBehaviour
 
     private GameManager gameManager;
 
-    public int pointValue;
+    protected int PointValue;
 
     public ParticleSystem explosionParticle1;
     public ParticleSystem explosionParticle2;
@@ -20,6 +22,8 @@ public class Target : MonoBehaviour
     private AudioSource eatSound;
     private AudioSource eatPremiumSound;
     private AudioSource boomSound;
+
+    protected AudioSource destroySound;
 
     void Start()
     {
@@ -34,14 +38,14 @@ public class Target : MonoBehaviour
         boomSound = GameObject.Find("Boom Sound").GetComponent<AudioSource>();
     }
 
-    private void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         if (gameManager.isGameActive)
         {
             Destroy(gameObject);
             InstantiateExplosion(explosionParticle1);
             InstantiateExplosion(explosionParticle2);
-            gameManager.UpdateScore(pointValue);
+            gameManager.UpdateScore(PointValue);
             switch (gameObject.tag)
             {
                 case ("Good"):
