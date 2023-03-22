@@ -1,4 +1,4 @@
-# [Learn] Unity-Prototype-5-Food-Eater-Game
+# [Learn] Unity-Prototype-Food-Eater-Game
 ## Created by Nikita Kiselev
 https://github.com/nikita-kiselev-dev
 
