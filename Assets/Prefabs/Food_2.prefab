@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8522394196090381329}
   - component: {fileID: 6993121539754033013}
   - component: {fileID: 862608597447549877}
-  - component: {fileID: 1037884182164499881}
-  m_Layer: 0
+  - component: {fileID: 1542942893926955457}
+  m_Layer: 7
   m_Name: Food_2
   m_TagString: Good
   m_Icon: {fileID: 0}
@@ -29,12 +29,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890394412533384136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 3.12, z: 0}
+  m_LocalPosition: {x: 7.79, y: -6.18, z: -26.57478}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &613516212323895451
 MeshFilter:
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1037884182164499881
+--- !u!114 &1542942893926955457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1890394412533384136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aec64eccf03bb43bd30990b687fb44, type: 3}
+  m_Script: {fileID: 11500000, guid: 48788bdf05ee1764d8de6bfe7afbc313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: 5
-  explosionParticle1: {fileID: 5112437202714306363, guid: 7b4191607aae74c0ab244a8d6e48adbf, type: 3}
-  explosionParticle2: {fileID: 15085447402717889, guid: 743ce290c74ae49c19aa3f128322fc7e, type: 3}
+  gameManager: {fileID: 0}
+  PointValue: 0
+  destroyParticlesHolder: {fileID: 0}
+  destroyParticle1: {fileID: 0}
+  destroyParticle2: {fileID: 0}
+  destroySound: {fileID: 0}

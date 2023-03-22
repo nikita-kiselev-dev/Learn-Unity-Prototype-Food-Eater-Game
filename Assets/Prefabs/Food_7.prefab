@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4370089288860921573}
   - component: {fileID: 2934939057308835820}
   - component: {fileID: 1601347904920555650}
-  - component: {fileID: 2492127161287738608}
   - component: {fileID: 3365832786286125437}
-  m_Layer: 0
+  - component: {fileID: 5660657366661947856}
+  m_Layer: 7
   m_Name: Food_7
   m_TagString: Good
   m_Icon: {fileID: 0}
@@ -29,12 +29,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3045994933568182289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3183932, y: 0, z: -16.4379}
+  m_LocalPosition: {x: 7.79, y: -6.18, z: -26.57478}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4370089288860921573
 MeshFilter:
@@ -113,21 +113,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2492127161287738608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3045994933568182289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1aec64eccf03bb43bd30990b687fb44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointValue: 5
-  explosionParticle1: {fileID: 5112437202714306363, guid: 7b4191607aae74c0ab244a8d6e48adbf, type: 3}
-  explosionParticle2: {fileID: 15085447402717889, guid: 743ce290c74ae49c19aa3f128322fc7e, type: 3}
 --- !u!65 &3365832786286125437
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -149,3 +134,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.42, y: 0.66, z: 0.39}
   m_Center: {x: 0, y: 0.23322976, z: 0}
+--- !u!114 &5660657366661947856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045994933568182289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48788bdf05ee1764d8de6bfe7afbc313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  PointValue: 0
+  destroyParticlesHolder: {fileID: 0}
+  destroyParticle1: {fileID: 0}
+  destroyParticle2: {fileID: 0}
+  destroySound: {fileID: 0}

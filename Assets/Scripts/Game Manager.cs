@@ -12,15 +12,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<GameObject> foodTargets;
     [SerializeField] private List<GameObject> enemyTargets;
     [SerializeField] private List<GameObject> premiumTargets;
-
-    public List<GameObject> targets;
-    public List<GameObject> targetsPremium;
-
+    
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject scoreTextObj;
     private int score;
-    public TextMeshProUGUI scoreText;
-    public GameObject scoreTextObj;
-
-    private uint currentLives;
+    
+    [SerializeField] private HeartLivesManager heartIconGroup;
+    public int currentLives { get; private set; }
     public TextMeshProUGUI livesText;
 
     public TextMeshProUGUI gameOverText;
@@ -46,6 +44,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     private bool pauseEnabled;
 
+    [SerializeField] private bool isFoodSpawned;
+
     void Start()
     {
         exitButton.onClick.AddListener(ExitGame);
@@ -66,21 +66,31 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
             Destroy(startSpawn);
-            if (foodCount % foodPremiumDivider == 0 && foodCount != 0)
+            switch (SpawnRandomizer())
             {
-                int index = Random.Range(0, targetsPremium.Count);
-                Instantiate(targetsPremium[index]);
-                foodCount++;
-                foodCountText.text = $"Food: {foodCount}";
-            }
-            else
-            {
-                int index = Random.Range(0, targets.Count);
-                Instantiate(targets[index]);
-                if (targets[index].CompareTag("Good"))
+                case true:
                 {
-                    foodCount++;
-                    foodCountText.text = $"Food: {foodCount}";
+                    if (foodCount % foodPremiumDivider == 0 && foodCount != 0)
+                    {
+                        int index = Random.Range(0, premiumTargets.Count);
+                        Instantiate(premiumTargets[index]);
+                        foodCount++;
+                        foodCountText.text = $"Food: {foodCount}";
+                    }
+                    else
+                    {
+                        int index = Random.Range(0, foodTargets.Count);
+                        Instantiate(foodTargets[index]);
+                        foodCount++;
+                        foodCountText.text = $"Food: {foodCount}";
+                    }
+                    break;
+                }
+                case false:
+                {
+                    int index = Random.Range(0, enemyTargets.Count);
+                    Instantiate(enemyTargets[index]);
+                    break;
                 }
             }
         }
@@ -107,6 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(float difficulty)
     {
+        heartIconGroup.gameObject.SetActive(true);
         volumeSlider.gameObject.SetActive(false);
         titleScreen.gameObject.SetActive(false);
         isGameActive = true;
@@ -139,6 +150,7 @@ public class GameManager : MonoBehaviour
         if (currentLives > 0)
         {
             currentLives--;
+            heartIconGroup.DestroyHeartIcons();
         }
 
         livesText.text = $"Lives: {currentLives}";
@@ -176,4 +188,29 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    private bool SpawnRandomizer()
+    {
+        int index = Random.Range(0, 11);
+        switch (index)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                return true;
+            case 8:
+            case 9:
+            case 10:
+                return false;
+        }
+
+        return false;
+    }
+
 }
+

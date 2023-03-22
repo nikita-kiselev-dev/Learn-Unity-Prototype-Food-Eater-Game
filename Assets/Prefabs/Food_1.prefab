@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4658286889829497967}
   - component: {fileID: 8157668033274352303}
   - component: {fileID: 6110570454084797663}
-  - component: {fileID: 5311466079217549377}
-  m_Layer: 0
+  - component: {fileID: 6606685068149160506}
+  m_Layer: 7
   m_Name: Food_1
   m_TagString: Good
   m_Icon: {fileID: 0}
@@ -29,12 +29,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656989069657305868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.33, y: 3.4, z: 0}
+  m_LocalPosition: {x: 7.79, y: -6.18, z: -26.57478}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1253251739346372018
 MeshFilter:
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5311466079217549377
+--- !u!114 &6606685068149160506
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
