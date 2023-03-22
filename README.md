@@ -9,7 +9,7 @@ https://github.com/nikita-kiselev-dev
 https://play.unity.com/mg/other/foodeater_v0-9
 
 ## Notes:
-- [x] Added inheretance for objects
+- [x] Added inheritance for objects
 - [x] Added hearts=lives icons
 - [x] Changed collisions for layers
 - [ ] TODO: Fix volume slider after scene restart
