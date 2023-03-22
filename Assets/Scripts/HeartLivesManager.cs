@@ -6,18 +6,17 @@ using UnityEngine.UIElements;
 public class HeartLivesManager : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
-    private GameObject heartIconGroup;
-    private int currentLives;
+    private int _currentLives;
 
     void Start()
     {
-        currentLives = gameManager.currentLives;
+        _currentLives = gameManager.CurrentLives;
 
     }
 
     public void DestroyHeartIcons()
     {
-        currentLives = gameManager.currentLives;
-        gameObject.transform.GetChild(currentLives).gameObject.SetActive(false);
+        _currentLives = gameManager.CurrentLives;
+        gameObject.transform.GetChild(_currentLives).gameObject.SetActive(false);
     }
 }

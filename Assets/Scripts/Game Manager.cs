@@ -15,34 +15,34 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject scoreTextObj;
-    private int score;
+    private int _score;
     
     [SerializeField] private HeartLivesManager heartIconGroup;
-    public int currentLives { get; private set; }
+    public int CurrentLives { get; private set; }
     public TextMeshProUGUI livesText;
 
     public TextMeshProUGUI gameOverText;
 
-    private float spawnRate = 1.0f;
+    private float _spawnRate = 1.0f;
     public GameObject startSpawn;
     public bool isGameActive;
     public Button restartButton;
     public Button exitButton;
     public GameObject titleScreen;
 
-    private int difficultyScoreBonus;
-    private int mediumScoreBonus = 2;
-    private int hardScoreBonus = 4;
+    private int _difficultyScoreBonus;
+    private const int _mediumScoreBonus = 2;
+    private const int _hardScoreBonus = 4;
     public string difficultyName;
 
     public Slider volumeSlider;
 
-    private int foodCount;
+    private int _foodCount;
     public TextMeshProUGUI foodCountText;
-    private int foodPremiumDivider = 10;
+    private const int _foodPremiumDivider = 10;
 
     public GameObject pauseScreen;
-    private bool pauseEnabled;
+    private bool _pauseEnabled;
 
     [SerializeField] private bool isFoodSpawned;
 
@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseMode(pauseEnabled);
-            pauseEnabled = !pauseEnabled;
+            PauseMode(_pauseEnabled);
+            _pauseEnabled = !_pauseEnabled;
         }
     }
 
@@ -64,25 +64,25 @@ public class GameManager : MonoBehaviour
     {
         while (isGameActive)
         {
-            yield return new WaitForSeconds(spawnRate);
+            yield return new WaitForSeconds(_spawnRate);
             Destroy(startSpawn);
             switch (SpawnRandomizer())
             {
                 case true:
                 {
-                    if (foodCount % foodPremiumDivider == 0 && foodCount != 0)
+                    if (_foodCount % _foodPremiumDivider == 0 && _foodCount != 0)
                     {
                         int index = Random.Range(0, premiumTargets.Count);
                         Instantiate(premiumTargets[index]);
-                        foodCount++;
-                        foodCountText.text = $"Food: {foodCount}";
+                        _foodCount++;
+                        foodCountText.text = $"Food: {_foodCount}";
                     }
                     else
                     {
                         int index = Random.Range(0, foodTargets.Count);
                         Instantiate(foodTargets[index]);
-                        foodCount++;
-                        foodCountText.text = $"Food: {foodCount}";
+                        _foodCount++;
+                        foodCountText.text = $"Food: {_foodCount}";
                     }
                     break;
                 }
@@ -101,18 +101,18 @@ public class GameManager : MonoBehaviour
         switch (difficultyName)
         {
             case ("easy"):
-                difficultyScoreBonus = 0;
+                _difficultyScoreBonus = 0;
                 break;
             case ("medium"):
-                difficultyScoreBonus = mediumScoreBonus;
+                _difficultyScoreBonus = _mediumScoreBonus;
                 break;
             case ("hard"):
-                difficultyScoreBonus = hardScoreBonus;
+                _difficultyScoreBonus = _hardScoreBonus;
                 break;
         }
 
-        score += scoreToAdd + difficultyScoreBonus;
-        scoreText.text = $"Score: {score}";
+        _score += scoreToAdd + _difficultyScoreBonus;
+        scoreText.text = $"Score: {_score}";
     }
 
     public void StartGame(float difficulty)
@@ -123,19 +123,19 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
         StartCoroutine(SpawnTarget());
 
-        spawnRate /= difficulty;
+        _spawnRate /= difficulty;
 
         scoreTextObj.gameObject.SetActive(true);
-        score = 0;
-        scoreText.text = $"Score: {score}";
+        _score = 0;
+        scoreText.text = $"Score: {_score}";
 
         livesText.gameObject.SetActive(true);
-        currentLives = 3;
-        livesText.text = $"Lives: {currentLives}";
+        CurrentLives = 3;
+        livesText.text = $"Lives: {CurrentLives}";
 
         foodCountText.gameObject.SetActive(true);
-        foodCount = 0;
-        foodCountText.text = $"Food: {foodCount}";
+        _foodCount = 0;
+        foodCountText.text = $"Food: {_foodCount}";
     }
 
     public void GameOver()
@@ -147,14 +147,14 @@ public class GameManager : MonoBehaviour
 
     public void LooseLive()
     {
-        if (currentLives > 0)
+        if (CurrentLives > 0)
         {
-            currentLives--;
+            CurrentLives--;
             heartIconGroup.DestroyHeartIcons();
         }
 
-        livesText.text = $"Lives: {currentLives}";
-        if (!(currentLives > 0))
+        livesText.text = $"Lives: {CurrentLives}";
+        if (!(CurrentLives > 0))
         {
             GameOver();
         }

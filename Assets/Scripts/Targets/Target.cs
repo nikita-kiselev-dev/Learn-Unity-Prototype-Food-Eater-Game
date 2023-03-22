@@ -2,20 +2,21 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Target : MonoBehaviour
 {
-    protected Rigidbody targetRB;
-    private float minForce = 12.0f;
-    private float maxForce = 16.0f;
-    private float maxTorque = 10.0f;
-    private float xStartPosition = 4.0f;
-    private float yStartPosition = 2.0f;
+    protected Rigidbody TargetRb;
+    private const float _minForce = 12.0f;
+    private const float _maxForce = 16.0f;
+    private const float _maxTorque = 10.0f;
+    private const float _xStartPosition = 4.0f;
+    private const float _yStartPosition = 2.0f;
 
     [SerializeField] protected GameManager gameManager;
     
-    [SerializeField] protected int PointValue;
+    [FormerlySerializedAs("PointValue")] [SerializeField] protected int pointValue;
 
     [SerializeField] protected ParticleHolder destroyParticlesHolder;
     [SerializeField] protected ParticleSystem destroyParticle1;
@@ -25,9 +26,9 @@ public class Target : MonoBehaviour
     
     protected void Start()
     {
-        targetRB = gameObject.GetComponent<Rigidbody>();
-        targetRB.AddForce(RandomForce(), ForceMode.Impulse);
-        targetRB.AddTorque(RandomTorque(), RandomTorque(),
+        TargetRb = gameObject.GetComponent<Rigidbody>();
+        TargetRb.AddForce(RandomForce(), ForceMode.Impulse);
+        TargetRb.AddTorque(RandomTorque(), RandomTorque(),
             RandomTorque(), ForceMode.Impulse);
         gameObject.transform.position = RandomStartPosition();
         destroyParticlesHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
@@ -42,7 +43,7 @@ public class Target : MonoBehaviour
             Destroy(gameObject);
             InstantiateExplosion(destroyParticle1);
             InstantiateExplosion(destroyParticle2);
-            gameManager.UpdateScore(PointValue);
+            gameManager.UpdateScore(pointValue);
             switch (gameObject.tag)
             {
                 case ("Good"):
@@ -70,17 +71,17 @@ public class Target : MonoBehaviour
 
     private Vector3 RandomForce()
     {
-        return Vector3.up * Random.Range(minForce, maxForce);
+        return Vector3.up * Random.Range(_minForce, _maxForce);
     }
 
     private float RandomTorque()
     {
-        return Random.Range(-maxTorque, maxTorque);
+        return Random.Range(-_maxTorque, _maxTorque);
     }
 
     private Vector3 RandomStartPosition()
     {
-        return new Vector3(Random.Range(-xStartPosition, xStartPosition), -yStartPosition);
+        return new Vector3(Random.Range(-_xStartPosition, _xStartPosition), -_yStartPosition);
     }
 
     private void InstantiateExplosion(ParticleSystem explosionParticle)

@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class DifficultyButton : MonoBehaviour
 {
-    private Button difficultyButton;
+    private Button _difficultyButton;
 
-    private GameManager gameManager;
+    private GameManager _gameManager;
 
     public float difficulty;
 
@@ -13,14 +13,14 @@ public class DifficultyButton : MonoBehaviour
 
     void Start()
     {
-        difficultyButton = gameObject.GetComponent<Button>();
-        difficultyButton.onClick.AddListener(SetDifficulty);
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _difficultyButton = gameObject.GetComponent<Button>();
+        _difficultyButton.onClick.AddListener(SetDifficulty);
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
     
     void SetDifficulty()
     {
-        gameManager.difficultyName = difficultyName; 
-        gameManager.StartGame(difficulty);
+        _gameManager.difficultyName = difficultyName; 
+        _gameManager.StartGame(difficulty);
     }
 }

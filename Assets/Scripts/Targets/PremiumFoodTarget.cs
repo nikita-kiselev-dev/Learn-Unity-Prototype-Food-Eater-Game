@@ -8,10 +8,10 @@ public class PremiumFoodTarget : FoodTarget
     private void Start()
     {
         base.Start();
-        PointValue = 8;
+        pointValue = 8;
         destroySound = GameObject.Find("Eat Premium Sound").GetComponent<AudioSource>();
-        destroyParticle1 = destroyParticlesHolder.destroyParticlesHolder["blue"];
-        destroyParticle2 = destroyParticlesHolder.destroyParticlesHolder["pink"];
+        destroyParticle1 = destroyParticlesHolder.DestroyParticlesHolder["blue"];
+        destroyParticle2 = destroyParticlesHolder.DestroyParticlesHolder["pink"];
     }
 
 }
