@@ -16,7 +16,7 @@ public class Target : MonoBehaviour
 
     [SerializeField] protected GameManager gameManager;
     
-    [FormerlySerializedAs("PointValue")] [SerializeField] protected int pointValue;
+    [SerializeField] protected int pointValue;
 
     [SerializeField] protected ParticleHolder destroyParticlesHolder;
     [SerializeField] protected ParticleSystem destroyParticle1;
@@ -27,12 +27,9 @@ public class Target : MonoBehaviour
     protected void Start()
     {
         TargetRb = gameObject.GetComponent<Rigidbody>();
-        TargetRb.AddForce(RandomForce(), ForceMode.Impulse);
-        TargetRb.AddTorque(RandomTorque(), RandomTorque(),
-            RandomTorque(), ForceMode.Impulse);
-        gameObject.transform.position = RandomStartPosition();
         destroyParticlesHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        SpawnTarget();
     }
 
     public virtual void OnMouseDown()
@@ -87,5 +84,13 @@ public class Target : MonoBehaviour
     private void InstantiateExplosion(ParticleSystem explosionParticle)
     {
         Instantiate(explosionParticle, transform.position, transform.rotation);
+    }
+
+    private void SpawnTarget()
+    {
+        TargetRb.AddForce(RandomForce(), ForceMode.Impulse);
+        TargetRb.AddTorque(RandomTorque(), RandomTorque(),
+            RandomTorque(), ForceMode.Impulse);
+        gameObject.transform.position = RandomStartPosition();
     }
 }
