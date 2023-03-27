@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private int _foodCount;
     public TextMeshProUGUI foodCountText;
-    private const int _foodPremiumRemainder = 10;
+    private const int _foodPremiumDivider = 10;
 
     public GameObject pauseScreen;
     private bool _pauseEnabled;
@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
         {
             case true:
             {
-                if (_foodCount % _foodPremiumRemainder == 0 && _foodCount != 0)
+                if (_foodCount % _foodPremiumDivider == 0 && _foodCount != 0)
                 {
                     int index = Random.Range(0, premiumTargets.Count);
                     Instantiate(premiumTargets[index]);

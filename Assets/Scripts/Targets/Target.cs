@@ -34,7 +34,6 @@ public class Target : MonoBehaviour
 
     public virtual void OnMouseDown()
     {
-        Debug.Log(gameManager.isGameActive);
         if (gameManager.isGameActive)
         {
             Destroy(gameObject);
