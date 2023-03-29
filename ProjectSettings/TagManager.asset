@@ -9,6 +9,7 @@ TagManager:
   - Sensor
   - Premium
   - Heart
+  - Game Manager
   layers:
   - Default
   - TransparentFX
