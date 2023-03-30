@@ -9,6 +9,8 @@ TagManager:
   - Sensor
   - Premium
   - Heart
+  - Game Manager
+  - Leaderboard
   layers:
   - Default
   - TransparentFX
