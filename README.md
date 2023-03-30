@@ -3,10 +3,10 @@
 https://github.com/nikita-kiselev-dev
 
 ## Current version:
-0.9
+0.95
 
 ## Unity WebGL application:
-https://play.unity.com/mg/other/foodeater_v0-9
+https://play.unity.com/mg/other/foodeater_v0-95
 
 ## Notes:
 - [x] Added inheritance for objects
