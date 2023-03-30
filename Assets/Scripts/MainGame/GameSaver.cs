@@ -7,49 +7,77 @@ using Unity.VisualScripting;
 
 public class GameSaver : MonoBehaviour
 {
-    private GameManager gameManager;
+    public GameManager gameManager;
     public string currentPlayerName;
-    //private InputEntry.Leaderboard[] leaderboardArray = new InputEntry.Leaderboard[10];
+
 
     [SerializeField] private Leaderboard leaderboardScript;
-    private string jsonSaveData;
+    private string leaderboardInfoStr;
+    public string playerName;
+    public int playerScore;
+
+    private string pathPlayerProfile;
+    private string pathLeaderboard;
+    private void Awake()
+    {
+        pathPlayerProfile = Application.persistentDataPath + "/player_savefile.json";
+        pathLeaderboard = Application.persistentDataPath + "/leaderboard_savefile.json";
+        playerName = leaderboardScript.playerName;
+        playerScore = leaderboardScript.playerScore;
+    }
 
     private void Start()
     {
         currentPlayerName = "John";
-        jsonSaveData = leaderboardScript.jsonSaveData;
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
     }
 
-    [System.Serializable]
-    class SaveData
+    class PlayerProfile
     {
-        public string jsonSaveData;
+        public string playerName;
+        public int playerScore;
+    }
+    [System.Serializable]
+    class LeaderboardSaveData
+    {
+        public string leaderboardInfoStr;
     }
 
     public void SavePlayerData()
     {
-        for (int i = 0; i < leaderboardScript.leaderboardArray.Length; i++)
-        {
-            Debug.Log(leaderboardScript.leaderboardArray[i]);
-        }
-        string path = Application.persistentDataPath + "/savefile.json";
-        SaveData data = new SaveData();
-        jsonSaveData = JsonHelper.ToJson(leaderboardScript.leaderboardArray, true);
-        data.jsonSaveData = jsonSaveData;
-        File.WriteAllText(path, jsonSaveData);
+        PlayerProfile playerSaveData = new PlayerProfile();
+        playerName = leaderboardScript.playerName;
+        playerSaveData.playerName = playerName;
+        playerScore = leaderboardScript.playerScore;
+        playerSaveData.playerScore = playerScore;
+
+        string jsonPlayerData = JsonUtility.ToJson(playerSaveData);
+        File.WriteAllText(pathPlayerProfile, jsonPlayerData);
+        
+        LeaderboardSaveData leaderboardSaveData = new LeaderboardSaveData();
+        
+        leaderboardInfoStr = JsonHelper.ToJson(leaderboardScript.leaderboardArray, true);
+        
+        leaderboardSaveData.leaderboardInfoStr = leaderboardInfoStr;
+        string jsonLeaderboardData = JsonUtility.ToJson(leaderboardSaveData);
+        File.WriteAllText(pathLeaderboard, jsonLeaderboardData);
         Debug.Log("Game saved!");
     }
-
     public void LoadPlayerData()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
-        if (File.Exists(path))
+        if (File.Exists(pathPlayerProfile))
         {
-            SaveData data = new SaveData();
-            data.jsonSaveData = File.ReadAllText(path);
-            jsonSaveData = data.jsonSaveData;
-            leaderboardScript.leaderboardArray = JsonHelper.FromJson<InputEntry.Leaderboard>(jsonSaveData);
+            string jsonPlayerData = File.ReadAllText(pathPlayerProfile);
+            PlayerProfile playerSaveData = JsonUtility.FromJson<PlayerProfile>(jsonPlayerData);
+            playerName = playerSaveData.playerName;
+            playerScore = playerSaveData.playerScore;
+        }
+        if (File.Exists(pathLeaderboard))
+        {
+            string jsonLeaderboardData = File.ReadAllText(pathLeaderboard);
+            LeaderboardSaveData leaderboardSaveData = JsonUtility.FromJson<LeaderboardSaveData>(jsonLeaderboardData);
+            //LeaderboardSaveData leaderboardSaveData = JsonHelper.FromJson<InputEntry.Leaderboard>(jsonLeaderboardData);
+            leaderboardScript.leaderboardArray = JsonHelper.FromJson<InputEntry.Leaderboard>(leaderboardSaveData.leaderboardInfoStr);
             Debug.Log("Game loaded!");
         }
     }

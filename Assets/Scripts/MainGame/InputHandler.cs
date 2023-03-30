@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/*
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] private InputField nameInput;
@@ -16,3 +16,4 @@ public class InputHandler : MonoBehaviour
         nameInput.text = "";
     }
 }
+*/

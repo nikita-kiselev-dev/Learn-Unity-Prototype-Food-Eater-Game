@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyTarget : Target
 {
-    private void Start()
+    private new void Start()
     {
         base.Start(); 
         pointValue = -10; 

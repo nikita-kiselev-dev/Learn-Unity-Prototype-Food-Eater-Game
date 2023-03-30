@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class FoodTarget : Target
 {
-
-    private void Start()
+    private new void Start()
     {
         base.Start();
         pointValue = 5;

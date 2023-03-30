@@ -7,21 +7,26 @@ using TMPro;
 public class InputController : MonoBehaviour
 {
     [SerializeField] private TMP_InputField playerNameText;
+    [SerializeField] private Leaderboard leaderboardScript;
+    [SerializeField] private GameObject gameStartButtonGroup;
     
     public string playerName;
 
     public bool isPlayerNameNull;
     
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        playerName = leaderboardScript.playerName;
+        playerNameText.text = playerName;
+        if (!IsPlayerNameEmpty())
+        {
+            gameStartButtonGroup.SetActive(true);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (String.IsNullOrEmpty(playerNameText.text))
+        if (IsPlayerNameEmpty())
         {
             isPlayerNameNull = true;
         }
@@ -34,5 +39,34 @@ public class InputController : MonoBehaviour
     public void SavePlayerName()
     {
         playerName = playerNameText.text;
+    }
+
+    public string GetPlayerName()
+    {
+        return playerName;
+    }
+
+    public void InstantiateDifficultyButtons()
+    {
+        if (!IsPlayerNameEmpty())
+        {
+            gameStartButtonGroup.SetActive(true);
+        }
+        else
+        {
+            gameStartButtonGroup.SetActive(false);
+        }
+    }
+
+    public bool IsPlayerNameEmpty()
+    {
+        if (String.IsNullOrEmpty(playerNameText.text))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

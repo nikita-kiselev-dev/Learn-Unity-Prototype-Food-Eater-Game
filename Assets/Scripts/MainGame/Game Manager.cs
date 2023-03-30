@@ -52,9 +52,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool isFoodSpawned;
 
+    [SerializeField] private Leaderboard leaderboard;
+
     void Awake()
     {
+        leaderboard.ArrayInitialization();
         gameSaver.LoadPlayerData();
+        leaderboard.playerName = gameSaver.playerName;
+        leaderboard.playerScore = gameSaver.playerScore;
         exitButton.onClick.AddListener(ExitGame);
     }
 
@@ -98,8 +103,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(float difficulty)
     {
+        leaderboard.playerName = inputController.GetPlayerName();
         gameSaver.SavePlayerData();
-        
         heartIconGroup.gameObject.SetActive(true);
         volumeSlider.gameObject.SetActive(false);
         titleScreen.gameObject.SetActive(false);
@@ -123,12 +128,16 @@ public class GameManager : MonoBehaviour
         foodCountText.text = $"Food: {_foodCount}";
     }
 
-    public void GameOver()
+    private void GameOver()
     {
+        leaderboard.playerScore = playerScore;
+        leaderboard.AddPlayerToLeaderboard();
+        Debug.Log("GameOver!");
+        leaderboard.BubbleSortByScore();
+        gameSaver.SavePlayerData();
         isGameActive = false;
         gameOverText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
-        //gameSaver.SavePlayerData(playerName, playerScore);
     }
 
     public void LooseLive()
@@ -146,7 +155,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ExitGame()
+    private void ExitGame()
     {
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();

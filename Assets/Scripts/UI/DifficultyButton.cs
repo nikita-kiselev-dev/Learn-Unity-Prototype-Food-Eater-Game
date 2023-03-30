@@ -20,7 +20,7 @@ public class DifficultyButton : MonoBehaviour
     
     void SetDifficulty()
     {
-        _gameManager.difficultyName = difficultyName; 
+        _gameManager.difficultyName = difficultyName;
         _gameManager.StartGame(difficulty);
     }
 }

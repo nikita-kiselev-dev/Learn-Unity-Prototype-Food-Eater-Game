@@ -18,9 +18,9 @@ public class Target : MonoBehaviour
     
     [SerializeField] protected int pointValue;
 
-    [SerializeField] protected ParticleHolder destroyParticlesHolder;
-    [SerializeField] protected ParticleSystem destroyParticle1;
-    [SerializeField] protected ParticleSystem destroyParticle2;
+    private protected ParticleHolder destroyParticlesHolder;
+    private protected ParticleSystem destroyParticle1;
+    private protected ParticleSystem destroyParticle2;
     
     [SerializeField] protected AudioSource destroySound;
     
@@ -59,7 +59,7 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
-        if (!gameObject.CompareTag("Bad") && other.gameObject.CompareTag("Sensor"))
+        if (gameManager.isGameActive == true &&!gameObject.CompareTag("Bad") && other.gameObject.CompareTag("Sensor"))
         {
             gameManager.LooseLive();
         }
