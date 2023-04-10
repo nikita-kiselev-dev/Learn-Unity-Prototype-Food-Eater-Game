@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject scoreTextObj;
 
     [SerializeField] private GameSaver gameSaver;
-    [SerializeField] private TestGameSaver testGameSaver;
 
     [SerializeField] private InputController inputController;
     
@@ -77,7 +76,6 @@ public class GameManager : MonoBehaviour
         while (isGameActive)
         {
             yield return new WaitForSeconds(_spawnRate);
-            Destroy(startSpawn);
             ChooseTargetToSpawn();
         }
     }
@@ -113,6 +111,8 @@ public class GameManager : MonoBehaviour
         foodCountText.gameObject.SetActive(true);
         
         isGameActive = true;
+        
+        Destroy(startSpawn);
         
         StartCoroutine(SpawnTarget());
 
